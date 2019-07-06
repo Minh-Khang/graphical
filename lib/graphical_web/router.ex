@@ -10,4 +10,7 @@ defmodule GraphicalWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController, except: [:new, :edit]
   end
+
+  forward "/api", Absinthe.Plug, schema: GraphicalWeb.Schema
+  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GraphicalWeb.Schema
 end
