@@ -40,7 +40,13 @@ defmodule Graphical.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:poison, "~> 3.1"},
+      {:absinthe, "~> 1.4.0"},
+      {:absinthe_plug, "~> 1.4.0"},
+      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto"},
+      # {:dataloader, "~> 1.0.0"}, absinthe_ecto is deprecated, fix later
+      {:faker, "~> 0.12"}
     ]
   end
 
