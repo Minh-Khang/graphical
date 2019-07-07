@@ -69,7 +69,7 @@ defmodule Graphical.Accounts do
   """
   def update_user(%User{} = user, attrs) do
     user
-    |> User.changeset(attrs)
+    |> User.update_changeset(attrs)
     |> Repo.update()
   end
 
@@ -101,4 +101,10 @@ defmodule Graphical.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  # def verify_user(%{"password" => password} = params) do
+  #   params
+  #   |> Accounts.get_by()
+  #   |> Argon2.check_pass(password)
+  # end
 end

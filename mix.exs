@@ -46,7 +46,9 @@ defmodule Graphical.MixProject do
       {:absinthe_plug, "~> 1.4.0"},
       {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto"},
       # {:dataloader, "~> 1.0.0"}, absinthe_ecto is deprecated, fix later
-      {:faker, "~> 0.12"}
+      {:faker, "~> 0.12"},
+      {:argon2_elixir, "~> 2.0"},
+      {:guardian, "~> 1.0"}
     ]
   end
 
