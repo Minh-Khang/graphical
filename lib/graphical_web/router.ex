@@ -5,12 +5,22 @@ defmodule GraphicalWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", GraphicalWeb do
+  pipeline :graphql do
+    plug GraphicalWeb.Context
+  end
+
+  scope "/", GraphicalWeb do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController, except: [:new, :edit]
   end
 
-  forward "/api", Absinthe.Plug, schema: GraphicalWeb.Schema
+  scope "/api" do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug, schema: GraphicalWeb.Schema
+  end
+
+  # keep this to access without authorization
   forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GraphicalWeb.Schema
 end
