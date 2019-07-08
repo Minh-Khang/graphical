@@ -12,8 +12,8 @@
 alias Graphical.Accounts
 alias Graphical.Posts
 
-Accounts.create_user(%{name: "123", email: "123@lmk.com"})
-Accounts.create_user(%{name: "456", email: "456@lmk.com"})
+Accounts.create_user(%{name: "123", email: "123@lmk.com", password: "password"})
+Accounts.create_user(%{name: "456", email: "456@lmk.com", password: "password"})
 
 for _ <- 1..10 do
   Posts.create_post(%{

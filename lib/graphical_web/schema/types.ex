@@ -15,4 +15,9 @@ defmodule GraphicalWeb.Schema.Types do
     field :body, :string
     field :user, :user, resolve: assoc(:user)
   end
+
+  # virtual field, no need in database
+  object :session do
+    field :token, :string
+  end
 end

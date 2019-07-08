@@ -51,7 +51,7 @@ defmodule Graphical.Accounts do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
+    |> User.registration_changset(attrs)
     |> Repo.insert()
   end
 
@@ -71,6 +71,15 @@ defmodule Graphical.Accounts do
     user
     |> User.update_changeset(attrs)
     |> Repo.update()
+  end
+
+  @doc """
+  store user token key.
+  """
+  def store_user(user, token) do
+    user
+    |> User.store_token_changeset(%{token: token})
+    |> Repo.update
   end
 
   @doc """
@@ -101,10 +110,4 @@ defmodule Graphical.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
-
-  # def verify_user(%{"password" => password} = params) do
-  #   params
-  #   |> Accounts.get_by()
-  #   |> Argon2.check_pass(password)
-  # end
 end

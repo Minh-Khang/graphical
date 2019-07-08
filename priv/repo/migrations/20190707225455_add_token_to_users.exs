@@ -3,7 +3,7 @@ defmodule Graphical.Repo.Migrations.AddTokenToUsers do
 
   def change do
     alter table(:users) do
-      add :token, :string
+      add :token, :text # use :text to store over 255 characters in Database
     end
   end
 end

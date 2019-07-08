@@ -1,6 +1,8 @@
 defmodule Graphical.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Graphical.Accounts.User
+  alias Graphical.Repo
 
   schema "users" do
     field :email, :string
@@ -46,4 +48,19 @@ defmodule Graphical.Accounts.User do
   end
 
   defp put_pass_hash(changeset), do: changeset
+
+  def authenticate(params) do
+    user = Repo.get_by(User, email: String.downcase(params.email))
+    case verify_user(user, params.password) do
+      true -> {:ok, user}
+      _ -> {:error, "Incorrect login credenticals"}
+    end
+  end
+
+  def verify_user(user, password) do
+    case user do
+      nil -> false
+      _ -> Argon2.verify_pass(password, user.password_hash) # Argon2.verify_pass require not null on password_hash
+    end
+  end
 end
